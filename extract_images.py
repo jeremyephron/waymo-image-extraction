@@ -107,7 +107,7 @@ def get_record_urls(split):
     """Returns the GCS urls of each record in the specified split."""
 
     stream = os.popen(f'gsutil ls {WAYMO_DATASET_BUCKET}/{split}')
-    urls = stream.read().split('\n')
+    urls = list(filter(None, stream.read().split('\n')))
     return urls
 
 
